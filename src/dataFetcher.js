@@ -46,7 +46,7 @@ const fetchDepartureList = async (route, direction, stop) => {
       },
     });
   } catch (error) {
-    return [];
+    return {};
   }
 };
 

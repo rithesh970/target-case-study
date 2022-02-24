@@ -145,7 +145,7 @@ const AppContextProvider = (props) => {
         appState.selectedDirection,
         selectedStop
       ).then((response) => {
-        if (response.length === 0) {
+        if (Object.entries(response).length === 0) {
           displayErrorMessage();
         } else {
           dispatchAction({

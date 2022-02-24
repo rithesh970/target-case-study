@@ -46,7 +46,7 @@ const cleanUpStops = (stops) => {
 const cleanUpDepartureList = (departureList) => {
   return {
     stop: {
-      stop_id: departureList.stops[0].stop_id,
+      stop_id: departureList.stops.map((stop) => stop.stop_id).join(", "),
       description: departureList.stops[0].description,
     },
     stopList: departureList.departures.map((departure) => {
