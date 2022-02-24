@@ -15,10 +15,10 @@ const AppContextProvider = (props) => {
 
   useEffect(() => {
     const fetchRoutes = async () => {
-      fetchInitialRoutes().then((response) => {
+      await fetchInitialRoutes().then((response) => {
         dispatchAction({ type: "TOGGLE_LOADER" });
-        if (typeof response === "object" && response.error !== undefined) {
-          displayErrorMessage(response);
+        if (response.length === 0) {
+          displayErrorMessage();
         } else {
           dispatchAction({
             type: "UPDATE_DATA",
@@ -33,10 +33,10 @@ const AppContextProvider = (props) => {
     fetchRoutes();
   }, []);
 
-  const displayErrorMessage = (data) => {
+  const displayErrorMessage = (message) => {
     dispatchAction({
       type: "CUSTOM_ERROR_MESSAGE",
-      message: data.error.message,
+      message: "Server error occured. Please try again later.",
     });
   };
 
@@ -60,8 +60,8 @@ const AppContextProvider = (props) => {
         route: selectedRoute,
       });
       fetchDirection(selectedRoute).then((response) => {
-        if (typeof response === "object" && response.error !== undefined) {
-          displayErrorMessage(response);
+        if (response.length === 0) {
+          displayErrorMessage();
         } else {
           dispatchAction({
             type: "UPDATE_DATA",
@@ -105,8 +105,8 @@ const AppContextProvider = (props) => {
         direction: selectedDirection,
       });
       fetchStops(appState.selectedRoute, selectedDirection).then((response) => {
-        if (typeof response === "object" && response.error !== undefined) {
-          displayErrorMessage(response);
+        if (response.length === 0) {
+          displayErrorMessage();
         } else {
           dispatchAction({
             type: "UPDATE_DATA",
@@ -145,8 +145,8 @@ const AppContextProvider = (props) => {
         appState.selectedDirection,
         selectedStop
       ).then((response) => {
-        if (typeof response === "object" && response.error !== undefined) {
-          displayErrorMessage(response);
+        if (response.length === 0) {
+          displayErrorMessage();
         } else {
           dispatchAction({
             type: "UPDATE_DEPARTURE_LIST",

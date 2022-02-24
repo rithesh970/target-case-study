@@ -1,8 +1,12 @@
-import { render, screen } from '@testing-library/react';
-import App from './App';
+import { render, screen } from "@testing-library/react";
+import App from "./App";
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+describe("App Component", () => {
+  test("renders images", () => {
+    render(<App />);
+    const logo = screen.getAllByRole("img");
+    expect(logo).toHaveLength(2);
+    expect(logo[0]).toHaveAttribute("src", "logo.svg");
+    expect(logo[1]).toHaveAttribute("src", "nextrip.jpg");
+  });
 });

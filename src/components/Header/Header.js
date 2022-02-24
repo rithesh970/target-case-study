@@ -8,6 +8,7 @@ const Header = () => {
     <Fragment>
       <header className="d-flex justify-content-center align-items-center border p-3">
         <img alt="metro transit home" src={logo} className="d-inline-block" />
+        <h1>Metro Transit App</h1>
       </header>
       <div className="main-image">
         <img alt="" src={metroImage} />
