@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Fragment, useContext } from "react";
+import Dropdowns from "./components/Dropdowns/Dropdowns";
+import Header from "./components/Header/Header";
+import DepartureList from "./components/DepatureList/DepartureList";
+import Loader from "./components/Loader/Loader";
+import Error from "./components/Error/Error";
+import AppContext from "./store";
 
-function App() {
+const App = () => {
+  const appContext = useContext(AppContext);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Fragment>
+      <Header />
+      {appContext.showLoader && <Loader />}
+      {appContext.showError && <Error />}
+      {!appContext.showLoader && <Dropdowns />}
+      {!appContext.showLoader &&
+        Object.entries(appContext.departureList).length !== 0 && (
+          <DepartureList />
+        )}
+    </Fragment>
   );
-}
+};
 
 export default App;

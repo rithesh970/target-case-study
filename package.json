@@ -6,6 +6,7 @@
     "@testing-library/jest-dom": "^5.16.2",
     "@testing-library/react": "^12.1.3",
     "@testing-library/user-event": "^13.5.0",
+    "axios": "^0.26.0",
     "eslint-plugin-cypress": "^2.12.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -21,13 +22,6 @@
     "cypress:start:wait": "start-server-and-test cypress:start:app http://localhost:3000",
     "cypress:open": "npm run cypress:start:wait -- \"cypress open\"",
     "cypress:run": "npm run cypress:start:wait -- \"cypress run\""
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest",
-      "plugin:cypress/recommended"
-    ]
   },
   "browserslist": {
     "production": [

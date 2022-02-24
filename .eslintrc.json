@@ -1,4 +1,9 @@
 {
+  "extends": ["react-app", "react-app/jest", "plugin:cypress/recommended"],
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaVersion": 2020
+  },
   "overrides": [
     {
       "extends": ["plugin:cypress/recommended"],
