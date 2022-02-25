@@ -112,8 +112,41 @@ describe("Test Clean up utils for Departure List Data", () => {
   let result = [];
   beforeAll(() => {
     result = cleanUpDepartureList(departure_data);
-    console.log(result);
   });
 
-  test("should return an array with stop and stopList options", () => {});
+  test("should return an object with stop and stopList options", () => {
+    expect(result).toMatchObject({
+      stop: expect.any(Object),
+      stopList: expect.any(Array),
+    });
+  });
+
+  test("should have stop information for all the stops", () => {
+    const stops = departure_data.stops.length;
+    const resultStop = result.stop.stop_id.split(",");
+
+    expect(resultStop.length).toBe(stops);
+  });
+
+  test("should have stop list information that is same as departure data", () => {
+    const stops = departure_data.departures.length;
+    const resultStop = result.stopList.length;
+
+    expect(resultStop).toBe(stops);
+  });
+
+  test("String should be same at the same index for departures", () => {
+    const index = 3;
+    const stops = departure_data.departures[index];
+    const resultStop = result.stopList[index];
+
+    expect(stops.description).toBe(resultStop.description);
+  });
+
+  test("String should be same at the same index for stops", () => {
+    const stops = departure_data.stops[0].description;
+    const resultStop = result.stop.description;
+
+    expect(stops).toBe(resultStop);
+  });
 });
