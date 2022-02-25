@@ -5,7 +5,7 @@ import "./DepartureList.css";
 import StopInformation from "../StopInformation/StopInformation";
 
 const DepartureList = () => {
-  const { departureList } = useContext(AppContext);
+  const { departureList = { stop: [], stopList: [] } } = useContext(AppContext);
   const [departureExpanded, setDepartureExpanded] = useState(false);
   const [count, setCount] = useState(3);
 
@@ -33,7 +33,7 @@ const DepartureList = () => {
       })
     ) : (
       <tr>
-        <td colspan="3" className="font-weight-bold text-center">
+        <td colSpan="3" className="font-weight-bold text-center">
           No departures at this time
         </td>
       </tr>
